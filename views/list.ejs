@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+      </head>
+      <body>
+
+        <%- include('menu.html') %>
+
+
+    <table class="table table-hover table-striped text-center container mt-4" style="border: 1px solid;">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < data.length; i++) { %>
+                <tr>
+                    <td><%= data[i].title %></td>
+                    <td><%= data[i].created %></td>
+                    <td><button class="delete btn btn-outline-danger" data-id="<%= data[i].id %>">삭제</button></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.delete').click(function (e) {
+                e.preventDefault(); 
+
+                let sid = e.target.dataset.id;
+                let item = $(this);
+
+                $.ajax({
+                    type: 'post',
+                    url: '/deletemysql',
+                    data: { id: sid },
+                    success: function (result) {
+                        
+                        item.closest('tr').remove();
+                        console.log('게시물 삭제 성공');
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                       
+                        console.log('게시물 삭제 실패');
+                        console.log(xhr, textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

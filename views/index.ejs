@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+      <script>
+        function login(){
+          open('/login', '_self');
+        }
+      </script>
+
+<style>
+    body {
+            background-color: #f8f9fa;
+        }
+
+        .welcome-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .login-button {
+            width: 100%;
+        }
+
+  .card {
+      transition: transform 0.3s ease;
+  }
+  .card:hover {
+      transform: scale(1.05);
+  }
+  table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 70%; 
+    border: 2px solid black; 
+}
+table th, table td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+</style>
+
+      </head>
+      <body>
+
+        <%- include('menu.html') %>
+
+        <div class="hero d-flex align-items-center justify-content-center" style="background-color: #333333;">
+          <div class="container text-center">
+              <h1 class="display-4 text-light">여행지 추천 블로그</h1>
+              <p class="lead text-light">감성있는 여행지를 추천합니다</p>
+              <a href="/signup">지금 회원가입 페이지로!</a>
+          </div>
+      </div>
+      <div style="margin-bottom: 50px;"></div>
+
+      <div class="col-md-6 d-flex justify-content-center">
+        <% if(user){ %>
+          <div class="welcome-container">
+            <h3>환영합니다 <%= user.userid %>님!</h3>
+            <a href="/logout" class="btn btn-danger">로그아웃</a>
+          </div>
+        <% } else { %>
+          <div class="login-container text-center">
+            <h3>지금 로그인</h3>
+            <p></p>
+            <a href="#" class='btn btn-warning login-button' onclick="login()"><b>로그인</b></a>
+          </div>
+        <% } %>
+
+        <div class="text-right">
+          <p>- 본 블로그는 여행 정보 확인 및 공유가 가능한 블로그입니다.</p>
+          <p>- 로그인을 하시면 게시판 글 작성 및 소통이 가능합니다!</p>
+          <p>- 아래 이미지를 클릭하셔서 여행지 정보를 확인하는 것이 가능합니다</p>
+      </div>
+
+      </div>
+      
+      <div style="margin-bottom: 50px;"></div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+          <div class="card">
+            <a href="/1"> <img src="https://source.unsplash.com/1600x900/?nature" class="card-img-top" alt="Nature"> </a>
+              <div class="card-body">
+                  <h5 class="card-title">자연풍경 사진</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">캐나다</h6>
+                  <p class="card-text">풍경이 아름다운 여행지입니다.</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card">
+            <a href="/2"> <img src="https://source.unsplash.com/1600x900/?beach" class="card-img-top" alt="Beach"> </a>
+              <div class="card-body">
+                  <h5 class="card-title">해변 사진</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">몰디브</h6>
+                  <p class="card-text">해변을 즐길수 있는 여행지입니다.</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+      <div class="card">
+        <a href="/3"> <img src="https://source.unsplash.com/1600x900/?city" class="card-img-top" alt="City"> </a>
+          <div class="card-body">
+              <h5 class="card-title">도시 사진</h5>
+              <h6 class="card-subtitle mb-2 text-muted">뉴욕</h6>
+              <p class="card-text">여행지 도시에서 담은 사진입니다.</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <a href="/4">  <img src="https://source.unsplash.com/1600x900/?Forest" class="card-img-top" alt="Forest"> </a>
+        <div class="card-body">
+            <h5 class="card-title">숲 사진</h5>
+            <h6 class="card-subtitle mb-2 text-muted">벨기에</h6>
+            <p class="card-text">울창한 숲이 눈에 띄는 여행지입니다.</p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <a href="/5"> <img src="https://source.unsplash.com/1600x900/?Sky" class="card-img-top" alt="Sky"> </a>
+      <div class="card-body">
+          <h5 class="card-title">하늘 사진</h5>
+          <h6 class="card-subtitle mb-2 text-muted">발리</h6>
+          <p class="card-text">푸른 하늘을 품은 여행지입니다.</p>
+      </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <a href="/6">   <img src="https://source.unsplash.com/1600x900/?Road" class="card-img-top" alt="Road"> </a>
+      <div class="card-body">
+          <h5 class="card-title">자연풍경 사진</h5>
+          <h6 class="card-subtitle mb-2 text-muted">호주</h6>
+          <p class="card-text">드라이빙 하기 좋은 여행지입니다.</p>
+      </div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+       
+        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+      </body>
+</html>
